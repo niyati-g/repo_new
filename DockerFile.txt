@@ -1,0 +1,14 @@
+# Use a lightweight base image
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy everything into the container
+COPY . .
+
+# Install dependencies if a requirements.txt exists
+RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+
+# Default command (you can override in pipeline)
+CMD ["echo", "Build successful"]
